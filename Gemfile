@@ -31,6 +31,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "standard"
+  gem "json-schema"
 end
 
 group :development do

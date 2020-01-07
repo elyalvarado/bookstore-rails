@@ -1,0 +1,89 @@
+ {
+   "definitions": {},
+   "type": "object",
+   "title": "The Book Schema",
+   "required": [
+     "data"
+   ],
+   "properties": {
+     "data": {
+       "$id": "#/properties/data",
+       "type": "object",
+       "title": "The Data Schema",
+       "required": [
+         "id",
+         "type",
+         "attributes",
+         "relationships"
+       ],
+       "properties": {
+         "id": {
+           "$id": "#/properties/data/properties/id",
+           "$ref": "json_api_definitions.json#/id"
+         },
+         "type": {
+           "$id": "#/properties/data/properties/type",
+           "type": "string",
+           "title": "The Type Schema",
+           "default": "",
+           "examples": [
+             "books"
+           ],
+           "pattern": "^(.*)$"
+         },
+         "attributes": {
+           "$id": "#/properties/data/properties/attributes",
+           "type": "object",
+           "title": "The Attributes Schema",
+           "required": [
+             "title",
+             "price"
+           ],
+           "properties": {
+             "title": {
+               "$id": "#/properties/data/properties/attributes/properties/title",
+               "type": "string",
+               "title": "The Title Schema",
+               "default": "",
+               "examples": [
+                 "MyString"
+               ],
+               "pattern": "^(.*)$"
+             },
+             "price": {
+               "$id": "#/properties/data/properties/attributes/properties/price",
+               "type": "string",
+               "title": "The Price Schema",
+               "default": "",
+               "examples": [
+                 "9.99"
+               ],
+               "pattern": "^(.*)$"
+             }
+           }
+         },
+         "relationships": {
+           "$id": "#/properties/data/properties/relationships",
+           "type": "object",
+           "title": "The Relationships Schema",
+           "required": [
+             "author",
+             "publisher"
+           ],
+           "properties": {
+             "author": {
+               "$id": "#/properties/data/properties/relationships/properties/author",
+               "title": "The Author Schema",
+               "$ref": "json_api_definitions.json#/relationship"
+             },
+             "publisher": {
+               "$id": "#/properties/data/properties/relationships/properties/publisher",
+               "title": "The Publisher Schema",
+               "$ref": "json_api_definitions.json#/relationship"
+             }
+           }
+         }
+       }
+     }
+   }
+ }

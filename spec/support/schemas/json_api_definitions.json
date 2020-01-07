@@ -1,0 +1,44 @@
+{
+  "id": {
+    "type": "string",
+    "title": "The Id Schema",
+    "default": "",
+    "examples": [
+      "237"
+    ],
+    "pattern": "^(.*)$"
+  },
+  "relationship": {
+    "type": "object",
+    "required": [
+      "data"
+    ],
+    "properties": {
+      "data": {
+        "type": "object",
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(.*)$"
+          },
+          "type": {
+            "type": "string",
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    }
+  },
+  "hasManyRelationships": {
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/relationship"
+      }
+    }
+  }
+}

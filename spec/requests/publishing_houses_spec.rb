@@ -24,6 +24,12 @@ RSpec.describe "Publishing Houses", type: :request do
       get publishing_house_path(publishing_house)
       expect(response).to be_successful
     end
+
+    it "the response matches the JSON schema for publishing house" do
+      publishing_house = FactoryBot.create(:publishing_house)
+      get publishing_house_path(publishing_house)
+      expect(response.body).to match_schema(:publishing_house)
+    end
   end
 
   describe "POST /publishing_houses" do
@@ -69,6 +75,12 @@ RSpec.describe "Publishing Houses", type: :request do
         put publishing_house_path(publishing_house), params: new_attributes
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match("application/json")
+      end
+
+      it "the response matches the publishing house schema" do
+        put publishing_house_path(publishing_house), params: new_attributes
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to match_schema(:publishing_house)
       end
     end
 

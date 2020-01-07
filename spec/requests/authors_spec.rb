@@ -24,6 +24,12 @@ RSpec.describe "Authors", type: :request do
       get author_path(author)
       expect(response).to be_successful
     end
+
+    it "the response matches the JSON schema for author" do
+      author = FactoryBot.create(:author)
+      get author_path(author)
+      expect(response.body).to match_schema(:author)
+    end
   end
 
   describe "POST /authors" do
@@ -70,6 +76,12 @@ RSpec.describe "Authors", type: :request do
         put author_path(author), params: new_attributes
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match("application/json")
+      end
+
+      it "the JSON response matches the author schema" do
+        put author_path(author), params: new_attributes
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to match_schema(:author)
       end
     end
 

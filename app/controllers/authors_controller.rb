@@ -47,6 +47,7 @@ class AuthorsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def author_params
-    params.require(:author).permit(:name)
+    json_api_params = ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    ActionController::Parameters.new(json_api_params).permit(:name)
   end
 end

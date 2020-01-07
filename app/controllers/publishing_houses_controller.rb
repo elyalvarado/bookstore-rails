@@ -47,6 +47,7 @@ class PublishingHousesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def publishing_house_params
-    params.require(:publishing_house).permit(:name, :discount)
+    json_api_params = ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    ActionController::Parameters.new(json_api_params).permit(:name, :discount)
   end
 end

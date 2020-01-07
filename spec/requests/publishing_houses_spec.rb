@@ -2,11 +2,13 @@ require "rails_helper"
 
 RSpec.describe "Publishing Houses", type: :request do
   let(:valid_attributes) {
-    FactoryBot.attributes_for(:publishing_house)
+    publishing_house = FactoryBot.build(:publishing_house)
+    ActiveModelSerializers::SerializableResource.new(publishing_house, adapter: :json_api).as_json
   }
 
   let(:invalid_attributes) {
-    FactoryBot.attributes_for(:publishing_house, name: nil)
+    publishing_house = FactoryBot.build(:publishing_house, name: nil)
+    ActiveModelSerializers::SerializableResource.new(publishing_house, adapter: :json_api).as_json
   }
 
   describe "GET /publishing_houses" do
@@ -28,12 +30,12 @@ RSpec.describe "Publishing Houses", type: :request do
     context "with valid params" do
       it "creates a new PublishingHouse" do
         expect {
-          post publishing_houses_path, params: {publishing_house: valid_attributes}
+          post publishing_houses_path, params: valid_attributes
         }.to change(PublishingHouse, :count).by(1)
       end
 
       it "renders a JSON response with the new publishing_house" do
-        post publishing_houses_path, params: {publishing_house: valid_attributes}
+        post publishing_houses_path, params: valid_attributes
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match("application/json")
         expect(response.location).to eq(publishing_house_url(PublishingHouse.last))
@@ -42,7 +44,7 @@ RSpec.describe "Publishing Houses", type: :request do
 
     context "with invalid params" do
       it "renders a JSON response with errors for the new publishing_house" do
-        post publishing_houses_path, params: {publishing_house: invalid_attributes}
+        post publishing_houses_path, params: invalid_attributes
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match("application/json")
       end
@@ -53,17 +55,18 @@ RSpec.describe "Publishing Houses", type: :request do
     let(:publishing_house) { FactoryBot.create(:publishing_house) }
     context "with valid params" do
       let(:new_attributes) {
-        {name: "New Name"}
+        valid_attributes[:data][:attributes][:name] = "New Name"
+        valid_attributes
       }
 
       it "updates the requested publishing_house" do
-        put publishing_house_path(publishing_house), params: {publishing_house: new_attributes}
+        put publishing_house_path(publishing_house), params: new_attributes
         publishing_house.reload
         expect(publishing_house.name).to eq("New Name")
       end
 
       it "renders a JSON response with the publishing_house" do
-        put publishing_house_path(publishing_house), params: {publishing_house: new_attributes}
+        put publishing_house_path(publishing_house), params: new_attributes
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match("application/json")
       end
@@ -71,7 +74,7 @@ RSpec.describe "Publishing Houses", type: :request do
 
     context "with invalid params" do
       it "renders a JSON response with errors for the publishing_house" do
-        put publishing_house_path(publishing_house), params: {publishing_house: invalid_attributes}
+        put publishing_house_path(publishing_house), params: invalid_attributes
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match("application/json")
       end

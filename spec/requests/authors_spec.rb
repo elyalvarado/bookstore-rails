@@ -2,11 +2,13 @@ require "rails_helper"
 
 RSpec.describe "Authors", type: :request do
   let(:valid_attributes) {
-    FactoryBot.attributes_for(:author)
+    author = FactoryBot.build(:author)
+    ActiveModelSerializers::SerializableResource.new(author, adapter: :json_api).as_json
   }
 
   let(:invalid_attributes) {
-    FactoryBot.attributes_for(:author, name: nil)
+    author = FactoryBot.build(:author, name: nil)
+    ActiveModelSerializers::SerializableResource.new(author, adapter: :json_api).as_json
   }
 
   describe "GET /authors" do
@@ -28,12 +30,12 @@ RSpec.describe "Authors", type: :request do
     context "with valid params" do
       it "creates a new Author" do
         expect {
-          post authors_path, params: {author: valid_attributes}
+          post authors_path, params: valid_attributes
         }.to change(Author, :count).by(1)
       end
 
       it "renders a JSON response with the new author" do
-        post authors_path, params: {author: valid_attributes}
+        post authors_path, params: valid_attributes
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match("application/json")
         expect(response.location).to eq(author_url(Author.last))
@@ -42,7 +44,7 @@ RSpec.describe "Authors", type: :request do
 
     context "with invalid params" do
       it "renders a JSON response with errors for the new author" do
-        post authors_path, params: {author: invalid_attributes}
+        post authors_path, params: invalid_attributes
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match("application/json")
       end
@@ -54,17 +56,18 @@ RSpec.describe "Authors", type: :request do
 
     context "with valid params" do
       let(:new_attributes) {
-        FactoryBot.attributes_for(:author, name: "New Name")
+        valid_attributes[:data][:attributes][:name] = "New Name"
+        valid_attributes
       }
 
       it "updates the requested author" do
-        put author_path(author), params: {author: new_attributes}
+        put author_path(author), params: new_attributes
         author.reload
         expect(author.name).to eq("New Name")
       end
 
       it "renders a JSON response with the author" do
-        put author_path(author), params: {author: valid_attributes}
+        put author_path(author), params: new_attributes
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match("application/json")
       end
@@ -72,7 +75,7 @@ RSpec.describe "Authors", type: :request do
 
     context "with invalid params" do
       it "renders a JSON response with errors for the author" do
-        put author_path(author), params: {author: invalid_attributes}
+        put author_path(author), params: invalid_attributes
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match("application/json")
       end

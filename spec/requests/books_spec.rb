@@ -17,6 +17,19 @@ RSpec.describe "Books", type: :request do
       get books_path
       expect(response).to be_successful
     end
+
+    it "the response body includes the total number of books in the meta total attribute" do
+      get books_path
+      json = JSON.parse(response.body)
+      expect(json["meta"]["total"]).to eq(0)
+    end
+
+    it "receives a limit parameter that limits the number of results to return" do
+      FactoryBot.create_list(:book, 2)
+      get books_path, params: { limit: 1 }
+      json = JSON.parse(response.body)
+      expect(json["data"].size).to eq(1)
+    end
   end
 
   describe "GET /books" do

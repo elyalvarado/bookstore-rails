@@ -10,4 +10,11 @@ RSpec.describe Author, type: :model do
     author = FactoryBot.build(:author, name: "")
     expect(author).to be_invalid
   end
+
+  describe "#discount" do
+    it "always returns 10 percent discount for self-published books" do
+      author = FactoryBot.build(:author)
+      expect(author.discount).to eq(10)
+    end
+  end
 end

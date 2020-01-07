@@ -51,4 +51,3 @@ class BooksController < ApplicationController
     ActionController::Parameters.new(json_api_params).permit(:title, :price, :author_id, :publisher_id, :publisher_type)
   end
 end
-

@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.limit(params[:limit])
 
-    render json: @books, include: ['author'], meta: {total: Book.count}
+    render json: @books, include: ["author"], meta: {total: Book.count}
   end
 
   # GET /books/1

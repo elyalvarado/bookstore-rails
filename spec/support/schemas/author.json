@@ -27,6 +27,7 @@
            "title": "The Attributes Schema",
            "required": [
              "name",
+             "bio",
              "discount"
            ],
            "properties": {
@@ -37,6 +38,16 @@
                "default": "",
                "examples": [
                  "James Jackson"
+               ],
+               "pattern": "^(.*)$"
+             },
+             "bio": {
+               "$id": "#/properties/data/properties/attributes/properties/bio",
+               "type": "string",
+               "title": "The Bio Schema",
+               "default": "",
+               "examples": [
+                 "Some biography info"
                ],
                "pattern": "^(.*)$"
              },

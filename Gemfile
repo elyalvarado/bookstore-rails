@@ -32,6 +32,8 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "standard"
   gem "json-schema"
+  gem "dotenv"
+  gem "webmock"
 end
 
 group :development do
@@ -45,3 +47,5 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "active_model_serializers", "~> 0.10.10"
+
+gem "octokit", "~> 4.15"

@@ -26,7 +26,7 @@ RSpec.describe "Books", type: :request do
 
     it "receives a limit parameter that limits the number of results to return" do
       FactoryBot.create_list(:book, 2)
-      get books_path, params: { limit: 1 }
+      get books_path, params: {limit: 1}
       json = JSON.parse(response.body)
       expect(json["data"].size).to eq(1)
     end

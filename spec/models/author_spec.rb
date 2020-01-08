@@ -11,6 +11,12 @@ RSpec.describe Author, type: :model do
     expect(author).to be_invalid
   end
 
+  it "destroys associated books on destroy" do
+    author = FactoryBot.create(:author)
+    FactoryBot.create(:book, author: author, publisher: author)
+    expect { author.destroy }.to change { Book.count }.by(-1)
+  end
+
   describe "#discount" do
     it "always returns 10 percent discount for self-published books" do
       author = FactoryBot.build(:author)

@@ -53,7 +53,7 @@ RSpec.describe GithubSyncService, type: :model do
         expect(author_for_issue.gh_issue_number).to eq(issue["number"])
         expect(author_for_issue.name).to eq(issue["title"])
         expect(author_for_issue.bio).to eq(issue["body"])
-        expect(author_for_issue.gh_last_sync).to eq(time_now)
+        expect(author_for_issue.gh_last_sync.to_s).to eq(time_now.to_s)
       end
     end
 
@@ -99,7 +99,7 @@ RSpec.describe GithubSyncService, type: :model do
         expect(author_for_issue.gh_issue_number).to eq(issue["number"])
         expect(author_for_issue.name).to eq(issue["title"])
         expect(author_for_issue.bio).to eq(issue["body"])
-        expect(author_for_issue.gh_last_sync).to eq(time_now)
+        expect(author_for_issue.gh_last_sync.to_s).to eq(time_now.to_s)
       end
     end
   end
@@ -137,7 +137,7 @@ RSpec.describe GithubSyncService, type: :model do
       expect(author.name).to eq(event["issue"]["title"])
       expect(author.bio).to eq(event["issue"]["body"])
       expect(author.gh_issue_number).to eq(event["issue"]["number"])
-      expect(author.gh_last_sync).to eq(time_now)
+      expect(author.gh_last_sync.to_s).to eq(time_now.to_s)
       expect(author.books.size).to eq(1)
     end
 
@@ -153,7 +153,7 @@ RSpec.describe GithubSyncService, type: :model do
       expect(author.name).to eq(event["issue"]["title"])
       expect(author.bio).to eq(event["issue"]["body"])
       expect(author.gh_issue_number).to eq(event["issue"]["number"])
-      expect(author.gh_last_sync).to eq(time_now)
+      expect(author.gh_last_sync.to_s).to eq(time_now.to_s)
       expect(author.books.size).to eq(1)
     end
 
@@ -172,7 +172,7 @@ RSpec.describe GithubSyncService, type: :model do
       expect(author.name).to eq(event["issue"]["title"])
       expect(author.bio).to eq(event["issue"]["body"])
       expect(author.gh_issue_number).to eq(event["issue"]["number"])
-      expect(author.gh_last_sync).to eq(time_now)
+      expect(author.gh_last_sync.to_s).to eq(time_now.to_s)
     end
 
     it "deletes an existing author from deleted event" do

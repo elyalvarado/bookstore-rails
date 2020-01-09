@@ -33,6 +33,7 @@ group :development, :test do
   gem "standard"
   gem "json-schema"
   gem "webmock"
+  gem 'simplecov', require: false, group: :test
 end
 
 group :development do

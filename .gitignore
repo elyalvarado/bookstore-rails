@@ -23,3 +23,4 @@
 
 # Ignore IDE
 .idea
+coverage

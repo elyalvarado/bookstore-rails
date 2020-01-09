@@ -66,6 +66,7 @@ GEM
     ast (2.4.0)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
+    brakeman (4.7.2)
     builder (3.2.4)
     byebug (11.0.1)
     case_transform (0.2)
@@ -224,6 +225,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.10)
   bootsnap (>= 1.4.2)
+  brakeman
   byebug
   factory_bot_rails
   json-schema

@@ -32,7 +32,6 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "standard"
   gem "json-schema"
-  gem "dotenv"
   gem "webmock"
 end
 

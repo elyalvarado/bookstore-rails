@@ -23,6 +23,3 @@
 
 # Ignore IDE
 .idea
-
-# Ignore dot env file
-.env

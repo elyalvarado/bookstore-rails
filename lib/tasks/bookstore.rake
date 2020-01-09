@@ -3,8 +3,9 @@ namespace :bookstore do
   task sync_with_github: :environment do
     Rails.logger = Logger.new(STDOUT)
     Rails.logger.level = :info
-    @repo = ENV.fetch("AUTHORS_GITHUB_REPO")
-    @token = ENV.fetch("AUTHORS_GITHUB_TOKEN")
+
+    @repo = Rails.application.credentials.authors_github[:repo]
+    @token = Rails.application.credentials.authors_github[:token]
     sync_service = GithubSyncService.new(repo: @repo, token: @token)
     sync_service.sync
   rescue KeyError => _

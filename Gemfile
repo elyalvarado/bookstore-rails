@@ -52,3 +52,5 @@ gem "active_model_serializers", "~> 0.10.10"
 gem "octokit", "~> 4.15"
 
 gem "bugsnag", "~> 6.12"
+
+gem "skylight", "~> 4.2"

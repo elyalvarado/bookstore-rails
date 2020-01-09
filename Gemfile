@@ -50,3 +50,5 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "active_model_serializers", "~> 0.10.10"
 
 gem "octokit", "~> 4.15"
+
+gem "bugsnag", "~> 6.12"

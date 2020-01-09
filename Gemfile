@@ -33,7 +33,7 @@ group :development, :test do
   gem "standard"
   gem "json-schema"
   gem "webmock"
-  gem 'simplecov', require: false, group: :test
+  gem "simplecov", require: false, group: :test
 end
 
 group :development do
@@ -54,3 +54,5 @@ gem "octokit", "~> 4.15"
 gem "bugsnag", "~> 6.12"
 
 gem "skylight", "~> 4.2"
+
+gem "codecov", "~> 0.1.16"

@@ -40,13 +40,11 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           RAILS_ENV: test
+          CODECOV_TOKEN: ${{ secrets.CodeCoveToken }}
+          CI: true
         run: |
           bundle exec rake
 
-      - name: Codecov
-        uses: codecov/codecov-action@v1.0.5
-        with:
-          token: ${{ secrets.CodeCoveToken }}
       - name: Run Brakeman
         env:
           PGHOST: localhost

@@ -56,3 +56,5 @@ gem "bugsnag", "~> 6.12"
 gem "skylight", "~> 4.2"
 
 gem "codecov", "~> 0.1.16"
+
+gem "rack-cors", "~> 1.1"

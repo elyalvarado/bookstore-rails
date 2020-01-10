@@ -46,9 +46,9 @@ jobs:
           bundle exec rake
 
       - name: Run Brakeman
-        env:
-          PGHOST: localhost
-          PGUSER: postgres
-          RAILS_ENV: test
         run: |
           bundle exec brakeman
+
+      - name: Run standardrb
+        run: |
+          bundle exec standardrb

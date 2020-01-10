@@ -140,6 +140,7 @@ class GithubSyncService
 
   # Creates a GitHub issue with the title using the author name and the body using the author bio
   def create_github_issue_for(author)
+    Rails.logger.info "Creating github issue for author #{author.id}"
     octokit_client.create_issue(repo_name, author.name, author.bio)
   end
 

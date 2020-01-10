@@ -30,6 +30,10 @@ The project comes with a sample `config/credentials.yml.sample` file that you ca
 
 In order to create an encrypted credentials file and its corresponding `master.key` file run the following commands:
 ```shell script
+# First delete the existing credentials file included with the repository, so that a new one can be created
+rm config/credentials.yml.enc
+
+# Run the rails credentials:edit command to create a new pair of master.key and credentials.yml.enc
 # Note: the following command uses vim as editor, you can change it according to your own preferences
 EDITOR=vim bundle exec rails credentials:edit
 ```

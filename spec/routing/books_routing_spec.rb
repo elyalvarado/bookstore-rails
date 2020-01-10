@@ -12,24 +12,20 @@ RSpec.describe BooksController, type: :routing do
       expect(get: book_path(1)).to route_to("books#show", id: "1")
     end
 
-    it "routes to #create" do
-      expect(post: "/books").to route_to("books#create")
-      expect(post: books_path).to route_to("books#create")
+    it "does not route to #create" do
+      expect(post: "/books").not_to be_routable
     end
 
-    it "routes to #update via PUT" do
-      expect(put: "/books/1").to route_to("books#update", id: "1")
-      expect(put: book_path(1)).to route_to("books#update", id: "1")
+    it "does not route to #update via PUT" do
+      expect(put: "/books/1").not_to be_routable
     end
 
-    it "routes to #update via PATCH" do
-      expect(patch: "/books/1").to route_to("books#update", id: "1")
-      expect(patch: book_path(1)).to route_to("books#update", id: "1")
+    it "does not routes to #update via PATCH" do
+      expect(patch: "/books/1").not_to be_routable
     end
 
-    it "routes to #destroy" do
-      expect(delete: "/books/1").to route_to("books#destroy", id: "1")
-      expect(delete: book_path(1)).to route_to("books#destroy", id: "1")
+    it "does not routes to #destroy" do
+      expect(delete: "/books/1").not_to be_routable
     end
   end
 end

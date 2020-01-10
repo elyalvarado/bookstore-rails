@@ -1,0 +1,26 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "5df1a2b607df51a051bc1d6cc512c42b2a0860f2546507de686f5432ccdcbffb",
+      "check_name": "MassAssignment",
+      "message": "Parameters should be whitelisted for mass assignment",
+      "file": "app/controllers/github_sync_controller.rb",
+      "line": 32,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.except(:action, :controller).permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "GithubSyncController",
+        "method": "event_params"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "note": "This is an already signature verified event coming from GitHub, which is a trusted source"
+    }
+  ],
+  "updated": "2020-01-09 12:22:03 -0500",
+  "brakeman_version": "4.7.2"
+}

@@ -12,24 +12,20 @@ RSpec.describe PublishingHousesController, type: :routing do
       expect(get: publishing_house_path(1)).to route_to("publishing_houses#show", id: "1")
     end
 
-    it "routes to #create" do
-      expect(post: "/publishing_houses").to route_to("publishing_houses#create")
-      expect(post: publishing_houses_path).to route_to("publishing_houses#create")
+    it "does not route to #create" do
+      expect(post: "/publishing_houses").not_to be_routable
     end
 
-    it "routes to #update via PUT" do
-      expect(put: "/publishing_houses/1").to route_to("publishing_houses#update", id: "1")
-      expect(put: publishing_house_path(1)).to route_to("publishing_houses#update", id: "1")
+    it "does not route to #update via PUT" do
+      expect(put: "/publishing_houses/1").not_to be_routable
     end
 
-    it "routes to #update via PATCH" do
-      expect(patch: "/publishing_houses/1").to route_to("publishing_houses#update", id: "1")
-      expect(patch: publishing_house_path(1)).to route_to("publishing_houses#update", id: "1")
+    it "does not route to #update via PATCH" do
+      expect(patch: "/publishing_houses/1").not_to be_routable
     end
 
-    it "routes to #destroy" do
-      expect(delete: "/publishing_houses/1").to route_to("publishing_houses#destroy", id: "1")
-      expect(delete: publishing_house_path(1)).to route_to("publishing_houses#destroy", id: "1")
+    it "does not route to #destroy" do
+      expect(delete: "/publishing_houses/1").not_to be_routable
     end
   end
 end

@@ -12,24 +12,20 @@ RSpec.describe AuthorsController, type: :routing do
       expect(get: author_path(1)).to route_to("authors#show", id: "1")
     end
 
-    it "routes to #create" do
-      expect(post: "/authors").to route_to("authors#create")
-      expect(post: authors_path).to route_to("authors#create")
+    it "does not route to #create" do
+      expect(post: "/authors").not_to be_routable
     end
 
-    it "routes to #update via PUT" do
-      expect(put: "/authors/1").to route_to("authors#update", id: "1")
-      expect(put: author_path(1)).to route_to("authors#update", id: "1")
+    it "does not route to #update via PUT" do
+      expect(put: "/authors/1").not_to be_routable
     end
 
-    it "routes to #update via PATCH" do
-      expect(patch: "/authors/1").to route_to("authors#update", id: "1")
-      expect(patch: author_path(1)).to route_to("authors#update", id: "1")
+    it "does not route to #update via PATCH" do
+      expect(patch: "/authors/1").not_to be_routable
     end
 
-    it "routes to #destroy" do
-      expect(delete: "/authors/1").to route_to("authors#destroy", id: "1")
-      expect(delete: author_path(1)).to route_to("authors#destroy", id: "1")
+    it "does not route to #destroy" do
+      expect(delete: "/authors/1").not_to be_routable
     end
   end
 end
